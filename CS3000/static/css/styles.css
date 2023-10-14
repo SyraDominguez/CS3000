@@ -27,9 +27,18 @@ header {
   font-size: large;
 }
 
+.headlink a,
+.headlink a:active,
+.headlink a:focus,
+.headlink a:visited,
+.headlink a:hover {
+  text-decoration: none;
+}
+
 .navbar {
   background-color: var(--color2);
   color: var(--color5);
+  position: relative;
   height: 30px;
   line-height: 30px;
   padding-left: 35px;

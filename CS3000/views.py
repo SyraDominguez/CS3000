@@ -22,6 +22,6 @@ def checking():
     return render_template('status.html')
 
 
-@app.route('/base')
+@app.route('/login')
 def logout():
-    return render_template('base.html')
+    return render_template('login.html')
