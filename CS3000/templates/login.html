@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block navbar %}{% endblock %}
+{% block page_title %}{% endblock page_title %}
+
+
+
+{% block login %}
+    <article class="grid">
+        <div>
+            <hgroup>
+                <h1><big><strong>LOGIN</strong></big></h1>
+            </hgroup>
+            <form>
+                <input
+                type="text"
+                name="User"
+                placeholder="User"
+                aria-label="User"
+                autocomplete="nickname"
+                required
+                />
+                <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                aria-label="Password"
+                autocomplete="current-password"
+                required
+                />
+                <fieldset>
+                    <label for="remember">
+                        <input type="checkbox" role="switch" id="remember" name="remember" />
+                        Remember me
+                    </label>
+                </fieldset>
+                <!-- <a href="/">
+                    <button type="submit" class="contrast">Login</button>
+                </a> -->
+            </form>
+            <div style="text-align: center;">
+                <a href="/">
+                    <button class="contrast">
+                        <span>ENTRAR</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+        
+    </article>
+{% endblock %}
