@@ -1,0 +1,121 @@
+:root {
+  --color0: #000c1b;
+  --color1: #003752;
+  --color2: #006a95;
+  --color3: #00a8e4;
+  --color4: #20dad8;
+  --color5: #aef1ee;
+  --color6: #cdfaf8;
+
+  --neutral-100: #fff;
+  --neutral-50: #888;
+  --neutral-0: #000;
+
+  --hover: rgb(14, 29, 235);
+
+  --error-color: var(var(--primary-color));
+  --default-border: solid 3px var(--secondary-color);
+}
+
+header {
+  background-color: var(--color1);
+  color: var(--color5);
+  height: 50px;
+  padding-left: 20px;
+  line-height: 50%;
+  text-align: center;
+  font-size: large;
+}
+
+.navbar {
+  background-color: var(--color2);
+  color: var(--color5);
+  height: 30px;
+  line-height: 30px;
+  padding-left: 35px;
+  padding-right: 35px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.navbar .fa-solid {
+  padding-right: 2px;
+}
+
+.navbar a,
+.navbar a:active,
+.navbar a:focus,
+.navbar a:visited,
+.navbar a:hover {
+  color: var(--color5);
+  padding: auto;
+  margin: 0;
+  line-height: 50%;
+}
+
+.navbar a:hover {
+  color: var(--hover);
+  font-size: 110%;
+  color: #87e895;
+  font-style: bold;
+}
+
+.navicon {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  padding: auto;
+}
+
+/* .tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  background-color: #000;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: opacity 0.3s;
+}
+
+.icon:hover .tooltip {
+  opacity: 10;
+} */
+
+main {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  min-height: 50vh;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-height: 80px;
+  background-color: var(--color0);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: solid thin var(--color2);
+}
+
+.pie-pagina {
+  background-color: var(--color0);
+  padding-top: 10px;
+  border-top: solid thin var(--color2);
+}
+
+.pie-pagina > p {
+  color: var(--neutral-100);
+  font-size: 15px;
+  text-align: center;
+}
+
+.pie-pagina .pp2 {
+  font-size: 10px;
+  padding-bottom: 10px;
+}
