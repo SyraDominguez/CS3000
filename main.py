@@ -1,3 +1,3 @@
-from CS3000 import app
-from CS3000.api import *
-from CS3000.views import *
+from cs3000 import app
+from cs3000.api import *
+from cs3000.views import *

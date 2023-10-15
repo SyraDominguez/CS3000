@@ -6,6 +6,7 @@
   --color4: #20dad8;
   --color5: #aef1ee;
   --color6: #cdfaf8;
+  --errores: #ff0000bb;
 
   --neutral-100: #fff;
   --neutral-50: #888;
@@ -13,8 +14,9 @@
 
   --hover: rgb(14, 29, 235);
 
-  --error-color: var(var(--primary-color));
-  --default-border: solid 3px var(--secondary-color);
+  --error-color: var(var(----errores));
+  --default-line: solid 1px var(--color4);
+  --default-border: solid 1px var(--color2);
 }
 
 header {
@@ -127,4 +129,38 @@ footer {
 .pie-pagina .pp2 {
   font-size: 10px;
   padding-bottom: 10px;
+}
+
+/* ESTILOS TABLA*/
+
+.grid {
+  border: var(--default-border);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+table.paper {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+table.paper .titulo-tabla {
+  border-bottom: var(--default-line);
+}
+.numero,
+.acciones {
+  text-align: right;
+}
+.lista-vacia {
+  text-align: center;
+  color: var(--neutral-50);
+  padding: 20px;
+}
+p.error {
+  font-size: small;
+  margin: 0;
+  line-height: 1em;
+}
+
+tr.error + tr td {
+  padding-bottom: 13px;
 }
