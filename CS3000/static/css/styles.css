@@ -143,18 +143,22 @@ table.paper {
   height: 100%;
   margin: 0;
 }
+
 table.paper .titulo-tabla {
   border-bottom: var(--default-line);
 }
-.numero,
+
+/* .numero,
 .acciones {
   text-align: right;
-}
+} */
+
 .lista-vacia {
   text-align: center;
   color: var(--neutral-50);
   padding: 20px;
 }
+
 p.error {
   font-size: small;
   margin: 0;
