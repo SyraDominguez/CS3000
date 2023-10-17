@@ -1,30 +1,29 @@
 <nav class="navbar">
-    <a href="/home"> 
+    <a href="/home" {% if current_page == 'home.html' %} class="disabled"{% endif %}>
         <div class="navicon">
-            <i class="fa-solid fa-house" ></i>
-        </div class="icon">
+            <i class="fa-solid fa-house"></i>
+        </div>
         <span class="tooltip">Home</span>
     </a>
     |
-    <a href="/operations">
+    <a href="/operations" {% if current_page == 'operations.html' %} class="disabled" {% endif %}>
         <div class="navicon">
-            <i class="fa-brands fa-btc" ></i>
-        </div class="icon">
+            <i class="fa-brands fa-btc"></i>
+        </div>
         <span class="tooltip">Operations</span>
     </a>
     |
-    <a href="/status">
+    <a href="/status" {% if current_page == 'status.html' %} class="disabled" {% endif %}>
         <div class="navicon">
-            <i class="fa-solid fa-wallet" ></i>
-        </div class="icon">
+            <i class="fa-solid fa-wallet"></i>
+        </div>
         <span class="tooltip">Status</span>
     </a>
     |
     <a href="/login">
         <div class="navicon">
-            <i class="fa-solid fa-power-off" ></i>
-        </div class="icon">
+            <i class="fa-solid fa-power-off"></i>
+        </div>
         <span class="tooltip">Logout</span>
-
     </a>
 </nav>

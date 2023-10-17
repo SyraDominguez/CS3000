@@ -1,5 +1,6 @@
-from flask import render_template
-from . import app
+from flask import flash, redirect, render_template, request, url_for
+from . import RUTA, app
+from .models import DBManager
 
 
 @app.route('/')
@@ -9,17 +10,23 @@ def entrar():
 
 @app.route('/home')
 def iniciar():
-    return render_template('home.html')
+    db = DBManager(RUTA)
+    sql = 'SELECT id, date, time, coinfrom, qinvest, cointo, qreceive FROM movements'
+    movs = db.consultaSQL(sql)
+    current_page = 'home.html'
+    return render_template('home.html', movs=movs, current_page=current_page)
 
 
 @app.route('/operations')
 def operar():
-    return render_template('operations.html')
+    current_page = 'operations.html'
+    return render_template('operations.html', current_page=current_page)
 
 
 @app.route('/status')
 def checking():
-    return render_template('status.html')
+    current_page = 'status.html'
+    return render_template('status.html', current_page=current_page)
 
 
 @app.route('/login')

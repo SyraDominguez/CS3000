@@ -78,6 +78,14 @@ header {
   padding: auto;
 }
 
+.disabled {
+  pointer-events: none; /* Desactiva los eventos de clic y puntero */
+  opacity: 0.5; /* Reduce la opacidad para indicar que está deshabilitado */
+  text-decoration: none; /* Quita cualquier decoración de enlace (opcional) */
+  /* Otros estilos personalizados, como cambiar el color de texto o fondo */
+  color: #888; /* Cambia el color de texto a gris */
+}
+
 /* .tooltip {
   position: absolute;
   bottom: 100%;
