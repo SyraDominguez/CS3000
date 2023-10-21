@@ -1,13 +1,10 @@
 from datetime import date
 import sqlite3
 
-"""SELECT id, fecha, concepto, tipo, cantidad FROM movimientos;"""
+"""SELECT id, date, time, coinfrom, qinvest, cointo, qreceive FROM movements;"""
 
 
 class DBManager:
-    """
-    Clase para interactuar con la db SQLite
-    """
 
     def conectar(self):
         conexion = sqlite3.connect(self.ruta)
@@ -91,23 +88,6 @@ class DBManager:
                 indice += 1
             movimiento['date'] = date.fromisoformat(movimiento['date'])
             resultado = movimiento
-
-        self.desconectar(conexion)
-        return resultado
-
-    """Metodo alternativo para obtener movimiento """
-
-    def consultaConParametros(self, consulta, params):
-        conexion, cursor = self.conectar()
-
-        resultado = False
-        try:
-            cursor.execute(consulta, params)
-            conexion.commit()
-            resultado = True
-        except Exception as ex:
-            print(ex)
-            conexion.rollback()
 
         self.desconectar(conexion)
         return resultado

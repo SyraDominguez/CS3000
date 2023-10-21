@@ -1,9 +1,11 @@
 const peticion = new XMLHttpRequest();
 
 function cargarMovimientos() {
-    console.log('Has llamado a la funcion de Cargar Movimientos');
-    peticion.open('GET', 'http://localhost:5000/api/v1/movimientos', false);
+    peticion.open('GET', 'http://localhost:5000/api/v1/movimientos', true);
     peticion.send();
+}
+
+function mostrarMovimientos() {
     const resultados = JSON.parse(peticion.responseText);
     const movimientos = resultados.results;
 
@@ -27,9 +29,11 @@ function cargarMovimientos() {
 }
 
 window.onload = function() {
-    console.log('Ya se han cargado los elementos de la pagina');
     const boton = document.getElementById('boton-recarga');
     boton.addEventListener('click', cargarMovimientos);
+
     cargarMovimientos();
-    console.log('FIN de la funcion window.onload');
+
+    peticion.onload = mostrarMovimientos;
+
 }
