@@ -5,47 +5,40 @@
 {% endblock page_title %}
 
 {% block contenido %}
- <div class="grid">
+<div class="grid grid1">
     <table class="paper">
         <tr>
             <th class ="titulo-tabla">Date</th>
             <th class ="titulo-tabla">Time</th>
-            <th class ="titulo-tabla">Origin</th>
-            <th class ="titulo-tabla">Q_Invest</th>
-            <th class ="titulo-tabla">Buy</th>
-            <th class ="titulo-tabla">Q_Invest</th>
+            <th class ="titulo-tabla">Coin From</th>
+            <th class ="titulo-tabla">Quantity</th>
+            <th class ="titulo-tabla">Coin To</th>
+            <th class ="titulo-tabla">Quantity</th>
             <th class="titulo-tabla precio-unitario">P.U</th>
         </tr>
     
         {% if movs %}
             {% for m in movs %}
                 <tr {% if m.has_errors %} class = "error" {% endif %}>
-                    <td>
-                        {% if m.fecha %}
-                            {{ m.fecha }}
-                        {% else %}
-                            ---
-                        {% endif %}
-                    </td>
-                    <td>{{ m.concepto }}</td>
-                    <td>
-                        {% if m.tipo == 'I' %}
-                        Ingreso 
-                        {% else %}
-                        Gasto
-                        {%endif%}
-                    </td>
-                    <td class="numero">{{ m.cantidad }}</td>
-                    <td class="acciones" class="box">
+
+                    <td>{{ m.date }}</td>
+                    <td>{{ m.time }}</td>
+                    <td>{{ m.coinfrom }}</td>
+                    <td>{{ m.qinvest }}</td>
+                    <td>{{ m.cointo }}</td>
+                    <td>{{ m.qreceive }}</td>
+
+                    
+                    <!-- <td class="acciones" class="box">
                         <a href="/editar/{{ m.id }}" class="mini-boton update">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                         <a href="/borrar/{{ m.id }}" class="mini-boton delete">
                             <i class="fa-solid fa-trash"></i>
                         </a>
-                    </td>
+                    </td> -->
                 </tr>
-            {% if m.has_errors %}
+            <!-- {% if m.has_errors %}
                 <tr>
                     <td></td>
                     <td colspan="3">
@@ -54,7 +47,7 @@
                         {% endfor %}
                     </td>
                 </tr>
-            {% endif %}
+            {% endif %} -->
             {%endfor%}
         {% else %}
             <tr>
@@ -62,5 +55,5 @@
             </tr>
         {% endif %}
     </table>
- </ class="grid">
+</div>
 {% endblock contenido%}

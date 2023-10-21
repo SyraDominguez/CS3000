@@ -1,5 +1,5 @@
-from flask import flash, redirect, render_template, request, url_for
-from . import RUTA, app
+from flask import flash, jsonify, redirect, render_template, request, url_for
+from . import app
 from .models import DBManager
 
 
@@ -10,11 +10,22 @@ def entrar():
 
 @app.route('/home')
 def iniciar():
-    db = DBManager(RUTA)
-    sql = 'SELECT id, date, time, coinfrom, qinvest, cointo, qreceive FROM movements'
-    movs = db.consultaSQL(sql)
-    current_page = 'home.html'
-    return render_template('home.html', movs=movs, current_page=current_page)
+    try:
+        db = DBManager(app.config['RUTA'])
+        sql = 'SELECT id, date, time, coinfrom, qinvest, cointo, qreceive FROM movements'
+        movs = db.consultaSQL(sql)
+        current_page = 'home.html'
+        resultado = {
+            'results': movs,
+            'status': 'success'
+        }
+    except Exception as ex:
+        resultado = {
+            'status': 'error',
+            'message': str(ex)
+        }
+    return jsonify(resultado)
+# current_page=current_page)
 
 
 @app.route('/operations')
