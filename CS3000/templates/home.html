@@ -12,53 +12,23 @@
 
 <div class="grid grid1">
     <table class="paper">
-        <tr>
-            <th class ="titulo-tabla">Date</th>
-            <th class ="titulo-tabla">Time</th>
-            <th class ="titulo-tabla">Coin From</th>
-            <th class ="titulo-tabla">Quantity</th>
-            <th class ="titulo-tabla">Coin To</th>
-            <th class ="titulo-tabla">Quantity</th>
-            <th class="titulo-tabla precio-unitario">P.U</th>
-        </tr>
-    
-        {% if movs %}
-            {% for m in movs %}
-                <tr {% if m.has_errors %} class = "error" {% endif %}>
+        <thead>
+            <tr>
+                <th class ="titulo-tabla">Date</th>
+                <th class ="titulo-tabla">Time</th>
+                <th class ="titulo-tabla">Coin From</th>
+                <th class ="titulo-tabla">Quantity</th>
+                <th class ="titulo-tabla">Coin To</th>
+                <th class ="titulo-tabla">Quantity</th>
+                <th class="titulo-tabla precio-unitario">P.U</th>
+            </tr>
+        </thead>
 
-                    <td>{{ m.date }}</td>
-                    <td>{{ m.time }}</td>
-                    <td>{{ m.coinfrom }}</td>
-                    <td>{{ m.qinvest }}</td>
-                    <td>{{ m.cointo }}</td>
-                    <td>{{ m.qreceive }}</td>
-
-                    
-                    <!-- <td class="acciones" class="box">
-                        <a href="/editar/{{ m.id }}" class="mini-boton update">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <a href="/borrar/{{ m.id }}" class="mini-boton delete">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    </td> -->
-                </tr>
-            <!-- {% if m.has_errors %}
-                <tr>
-                    <td></td>
-                    <td colspan="3">
-                        {% for error in m.errores %}
-                            <p class="error">{{ error }}</p>
-                        {% endfor %}
-                    </td>
-                </tr>
-            {% endif %} -->
-            {%endfor%}
-        {% else %}
+        <tbody id="cuerpo-tabla">
             <tr>
                 <td colspan = "7" class="lista-vacia">NO MOVEMENTS</td>
             </tr>
-        {% endif %}
+        </tbody>
     </table>
 </div>
 {% endblock contenido%}

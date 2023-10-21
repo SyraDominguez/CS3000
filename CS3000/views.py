@@ -10,7 +10,7 @@ from .models import DBManager
 
 @app.route('/')
 def inicio():
-    return render_template('home.html')
+    return render_template('login.html')
 
 
 @app.route('/home')
