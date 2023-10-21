@@ -18,12 +18,14 @@ def listar_movimimientos():
             'results': movs,
             'status': 'success'
         }
+        status_code = 200
     except Exception as ex:
         resultado = {
             'status': 'error',
             'message': str(ex)
         }
-    return jsonify(resultado)
+        status_code = 500
+    return jsonify(resultado), status_code
 
 
 @app.route('/api/v1/movimientos/<int:id>')
