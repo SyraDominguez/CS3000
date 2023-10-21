@@ -30,5 +30,6 @@ window.onload = function() {
     console.log('Ya se han cargado los elementos de la pagina');
     const boton = document.getElementById('boton-recarga');
     boton.addEventListener('click', cargarMovimientos);
+    cargarMovimientos();
     console.log('FIN de la funcion window.onload');
 }
