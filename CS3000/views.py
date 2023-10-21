@@ -5,8 +5,16 @@ from .models import DBManager
 ################ VISTAS PARA TEMPLATES #################
 
 
+"""ENLACE TEMPORAL PARA ENTRAR"""
+
+
+@app.route('/')
+def inicio():
+    return render_template('home.html')
+
+
 @app.route('/home')
-def entrar():
+def home():
     current_page = 'home.html'
     return render_template('home.html', current_page=current_page)
 
