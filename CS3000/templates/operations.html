@@ -1,5 +1,69 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-<h3>OPERATIONS</h3>
+<h3>CRYPTOCURRENCIES OPERATIONS</h3>
 {% endblock page_title %}
+
+{% block contenido %}
+<div id="conversion-form">
+    <form id="conversion" action="/submit-conversion" method="post">
+        <label for="coin-from">Coin From</label>
+        <select id="coin-from" name="coin-from">
+            <optgroup label="Currencies">
+                <option value="EUR">Euro (EUR)</option>
+                <option value="USD">Dolar (USD)</option>
+            </optgroup >
+
+            <optgroup label="Cryptocurrencies">
+                <option value="BTC">Bitcoin (BTC)</option>
+                <option value="ETH">Ethereum (ETH)</option>
+                <option value="USDT">Tether (USDT)</option>
+                <option value="ADA">Cardano (ADA)</option>
+                <option value="SOL">Solana (SOL)</option>
+                <option value="XRP">Ripple (XRP)</option>
+                <option value="DOT">Polkadot (DOT)</option>
+                <option value="DOGE">Dogecoin (DOGE)</option>
+                <option value="SHIB">Shiba Inu (SHIB)</option>
+            </optgroup >
+
+        </select>
+    
+        <label for="coin-to">Coin To:</label>
+        <select id="coin-to" name="coin-to">
+            <optgroup label="Currencies">
+                <option value="EUR">Euro (EUR)</option>
+                <option value="USD">Dolar (USD)</option>
+            </optgroup >
+
+            <optgroup label="Cryptocurrencies">
+                <option value="BTC">Bitcoin (BTC)</option>
+                <option value="ETH">Ethereum (ETH)</option>
+                <option value="USDT">Tether (USDT)</option>
+                <option value="ADA">Cardano (ADA)</option>
+                <option value="SOL">Solana (SOL)</option>
+                <option value="XRP">Ripple (XRP)</option>
+                <option value="DOT">Polkadot (DOT)</option>
+                <option value="DOGE">Dogecoin (DOGE)</option>
+                <option value="SHIB">Shiba Inu (SHIB)</option>
+            </optgroup >
+        </select>
+        
+        <label for="p-u">P.U.</label>
+        <input type="text" id="p-u" name="p-u" readonly/>
+
+        <label for="quantity-from">Amount to Invest</label>
+        <input type="text" id="quantity-from" name="quantity-from" />
+
+        <button type="button" id="calculate-button">
+            <i class="fas fa-calculator"></i>
+        </button>
+
+        <label for="quantity-to">Amount Acquired</label>
+        <input type="text" id="quantity-to" name="quantity-to" readonly/>
+    </form>
+    <button type="button" id="confirm-button">
+        <i class="fa-solid fa-check"></i>
+    </button>
+</div>
+
+{% endblock contenido %}
