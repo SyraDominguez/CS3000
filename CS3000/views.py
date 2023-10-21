@@ -5,9 +5,10 @@ from .models import DBManager
 ################ VISTAS PARA TEMPLATES #################
 
 
-@app.route('/')
+@app.route('/home')
 def entrar():
-    return render_template('home.html')
+    current_page = 'home.html'
+    return render_template('home.html', current_page=current_page)
 
 
 @app.route('/operations')

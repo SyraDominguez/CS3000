@@ -12,7 +12,6 @@ def listar_movimimientos():
         db = DBManager(app.config['RUTA'])
         sql = 'SELECT id, date, time, coinfrom, qinvest, cointo, qreceive FROM movements'
         movs = db.consultaSQL(sql)
-        current_page = 'home.html'
         resultado = {
             'results': movs,
             'status': 'success'
@@ -23,4 +22,3 @@ def listar_movimimientos():
             'message': str(ex)
         }
     return jsonify(resultado)
-# current_page=current_page)
