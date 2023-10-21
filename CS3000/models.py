@@ -71,7 +71,7 @@ class DBManager:
 
     def obtenerMovimiento(self, id):
 
-        consulta = 'SELECT id, fecha, concepto, tipo, cantidad FROM movimientos WHERE id=?'
+        consulta = 'SELECT id, date, time, coinfrom, qinvest, cointo, qreceive FROM movements WHERE id=?'
 
         conexion, cursor = self.conectar()
 
@@ -89,7 +89,7 @@ class DBManager:
             for nombre in nombres_columna:
                 movimiento[nombre] = datos[indice]
                 indice += 1
-            movimiento['fecha'] = date.fromisoformat(movimiento['fecha'])
+            movimiento['date'] = date.fromisoformat(movimiento['date'])
             resultado = movimiento
 
         self.desconectar(conexion)
