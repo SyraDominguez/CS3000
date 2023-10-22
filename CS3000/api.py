@@ -1,9 +1,18 @@
 from datetime import datetime
+import requests
 
-from flask import jsonify
+from flask import jsonify, redirect, render_template, request, url_for
+
 
 from . import app
 from .models import DBManager
+
+CURRENCIES = [
+    'EUR', 'BTC', 'ETH', 'USDT', 'ADA', 'SOL', 'XRP', 'DOT', 'DOGE', 'SHIB'
+]
+
+COINAPI_BASE_URL = 'https://rest.coinapi.io/v1'
+API_KEY = 'E454727C-AB73-4CEF-B58B-07AF85EF3328'
 
 ################ VISTAS PARA API's #################
 

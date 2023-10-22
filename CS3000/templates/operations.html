@@ -16,8 +16,7 @@
                 </div>
                 <select id="coin-from" name="coin-from">
                     <optgroup label="Currencies">
-                        <option value="EUR">Euro (EUR)</option>
-                        <option value="USD">Dolar (USD)</option>
+                        <option value="EUR" selected>Euro (EUR)</option>
                     </optgroup >
                 
                     <optgroup label="Cryptocurrencies">
@@ -44,11 +43,10 @@
                 <select id="coin-to" name="coin-to">
                     <optgroup label="Currencies">
                         <option value="EUR">Euro (EUR)</option>
-                        <option value="USD">Dolar (USD)</option>
                     </optgroup >
                 
                     <optgroup label="Cryptocurrencies">
-                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="BTC" selected>Bitcoin (BTC)</option>
                         <option value="ETH">Ethereum (ETH)</option>
                         <option value="USDT">Tether (USDT)</option>
                         <option value="ADA">Cardano (ADA)</option>
@@ -76,7 +74,7 @@
             </div>
     
             <div class="calculate">
-                <label for="calculate"><p></p></label>
+                <label for="calculate"></label>
                 <button type="button" id="calculate-button">
                     <i class="fas fa-calculator"></i>
                 </button>
@@ -89,7 +87,7 @@
                 <input type="text" id="quantity-to" name="quantity-to" readonly/>
             </div>
             <div class="confirm">
-                <label for="confirm"><p></p></label>
+                <label for="confirm"></label>
                 <button type="button" id="confirm-button">
                     <i class="fa-solid fa-check"></i>
                 </button>
@@ -104,5 +102,6 @@
     <a href="/status" class="page-button">Status</a>
     <a href="/login" class="page-button">Logout</a>
 </div>
+
 
 {% endblock contenido %}
