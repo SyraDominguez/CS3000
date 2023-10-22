@@ -12,7 +12,7 @@
   --neutral-50: #888;
   --neutral-0: #000;
 
-  --hover: rgb(14, 29, 235);
+  --hover: var(--color2);
 
   --error-color: var(var(----errores));
   --default-line: solid 1px var(--color4);
@@ -79,10 +79,10 @@ header {
 }
 
 .disabled {
-  pointer-events: none; /* Desactiva los eventos de clic y puntero */
-  opacity: 0.25; /* Reduce la opacidad para indicar que está deshabilitado */
-  text-decoration: none; /* Quita cualquier decoración de enlace (opcional) */
-  color: #888; /* Cambia el color de texto a gris */
+  pointer-events: none;
+  opacity: 0.25;
+  text-decoration: none;
+  color: #888;
 }
 
 /* .tooltip {
@@ -159,11 +159,6 @@ table.paper .titulo-tabla {
   border-bottom: var(--default-line);
 }
 
-/* .numero,
-.acciones {
-  text-align: right;
-} */
-
 .lista-vacia {
   text-align: center;
   color: var(--neutral-50);
@@ -178,4 +173,188 @@ p.error {
 
 tr.error + tr td {
   padding-bottom: 13px;
+}
+
+/* ESTILOS DEL BALANCE */
+
+#user-balance {
+  background-color: var(--color0);
+  color: var(--neutral-100);
+  padding: 10px;
+  margin-bottom: 20px;
+  border: var(--default-border);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#user-balance p {
+  margin: 0;
+}
+
+.label-container label {
+  flex: 1;
+  text-align: start;
+  width: 100%;
+}
+
+.invest label,
+.acquired label {
+  width: 100%;
+}
+
+.calculate button,
+.confirm button {
+  display: grid;
+  margin-top: 8px;
+  justify-content: space-around;
+  width: 60px;
+}
+
+.invest,
+.acquired,
+.calculate,
+.confirm {
+  display: flex;
+  width: 90%;
+  align-items: end;
+  justify-content: end;
+}
+
+.currencies-container,
+.calculate-container,
+.confirm-container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 50px;
+}
+
+.calculate-container,
+.confirm-container {
+  grid-gap: 0.5px;
+}
+
+.currency_from,
+.currency_to,
+.currency_pu {
+  width: 100%;
+}
+
+.currency_from select,
+.currency_to select {
+  width: 100%;
+}
+
+.calculate-container > div,
+.confirm-container > div {
+  display: grid;
+}
+
+/* ESTILOS PARA FORMULARIO STATUS */
+
+.user-balance {
+  background-color: var(--color4);
+  color: var(--neutral-100);
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.status-container .paper {
+  width: 100%;
+  margin: 0;
+}
+
+.status-container .grid {
+  border: var(--default-border);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.status-container .grid1 {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.status-container .titulo-tabla {
+  border-bottom: var(--default-line);
+}
+
+.status-container {
+  text-align: center;
+}
+
+.status-container details {
+  display: inline-block;
+}
+
+.status-container details summary {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.status-container details textarea {
+  display: block;
+}
+
+.status-container .titulo-tabla th,
+.status-container details summary {
+  color: var(--color3);
+}
+
+/* ESTILOS PARA LOS BOTONES */
+
+#page-buttons {
+  padding: 20px;
+  text-align: center;
+}
+
+.page-button {
+  display: inline-block;
+  margin: 10px;
+  padding: 8px 16px;
+  background-color: var(--color2);
+  color: var(--color5);
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.page-button:hover {
+  background-color: var(--color4);
+  color: var(--color0);
+}
+
+#page-buttons-container {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.page-buttons {
+  text-align: center;
+  margin: 20px;
+}
+
+.page-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--color2);
+  color: var(--color5);
+  text-decoration: none;
+  font-size: 16px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.page-button:hover {
+  background-color: var(--color1);
+  color: (var(--neutral-0));
+  transform: scale(0.9);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 1);
 }
