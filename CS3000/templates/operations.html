@@ -6,64 +6,97 @@
 
 {% block contenido %}
 <div id="conversion-form">
+    <div id="user-balance">
+        <p>Balance: 10,000 €</p>
+    </div>
     <form id="conversion" action="/submit-conversion" method="post">
-        <label for="coin-from">Coin From</label>
-        <select id="coin-from" name="coin-from">
-            <optgroup label="Currencies">
-                <option value="EUR">Euro (EUR)</option>
-                <option value="USD">Dolar (USD)</option>
-            </optgroup >
+            <div class="currency_from">
+                <div class="label-container">
+                    <label for="coin-from">Coin From</label>
+                </div>
+                <select id="coin-from" name="coin-from">
+                    <optgroup label="Currencies">
+                        <option value="EUR">Euro (EUR)</option>
+                        <option value="USD">Dolar (USD)</option>
+                    </optgroup >
+                
+                    <optgroup label="Cryptocurrencies">
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="USDT">Tether (USDT)</option>
+                        <option value="ADA">Cardano (ADA)</option>
+                        <option value="SOL">Solana (SOL)</option>
+                        <option value="XRP">Ripple (XRP)</option>
+                        <option value="DOT">Polkadot (DOT)</option>
+                        <option value="DOGE">Dogecoin (DOGE)</option>
+                        <option value="SHIB">Shiba Inu (SHIB)</option>
+                    </optgroup >
+                </select>
+            </div>  
+        <div class = "currencies-container">    
+            <div class="currency_to">    
+                <div class="label-container">
+                    <span>
+                        <label for="coin-to">Coin To</label>
+                    </span>
+                    
+                </div>
+                <select id="coin-to" name="coin-to">
+                    <optgroup label="Currencies">
+                        <option value="EUR">Euro (EUR)</option>
+                        <option value="USD">Dolar (USD)</option>
+                    </optgroup >
+                
+                    <optgroup label="Cryptocurrencies">
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="USDT">Tether (USDT)</option>
+                        <option value="ADA">Cardano (ADA)</option>
+                        <option value="SOL">Solana (SOL)</option>
+                        <option value="XRP">Ripple (XRP)</option>
+                        <option value="DOT">Polkadot (DOT)</option>
+                        <option value="DOGE">Dogecoin (DOGE)</option>
+                        <option value="SHIB">Shiba Inu (SHIB)</option>
+                    </optgroup >
+                </select>
+            </div>
 
-            <optgroup label="Cryptocurrencies">
-                <option value="BTC">Bitcoin (BTC)</option>
-                <option value="ETH">Ethereum (ETH)</option>
-                <option value="USDT">Tether (USDT)</option>
-                <option value="ADA">Cardano (ADA)</option>
-                <option value="SOL">Solana (SOL)</option>
-                <option value="XRP">Ripple (XRP)</option>
-                <option value="DOT">Polkadot (DOT)</option>
-                <option value="DOGE">Dogecoin (DOGE)</option>
-                <option value="SHIB">Shiba Inu (SHIB)</option>
-            </optgroup >
+            <div class="currency_pu">
+                <div class="label-container">
+                    <label for="p-u">P.U.</label>
+                </div >
+                <input type="text" id="p-u" name="p-u" readonly/>
+            </div>
+        </div>
 
-        </select>
+        <div class="calculate-container">
+            <div class="invest">
+                <label for="quantity-from">Amount Invest</label>
+                <input type="number" id="quantity-from" name="quantity-from" required min="1"/>
+            </div>
     
-        <label for="coin-to">Coin To:</label>
-        <select id="coin-to" name="coin-to">
-            <optgroup label="Currencies">
-                <option value="EUR">Euro (EUR)</option>
-                <option value="USD">Dolar (USD)</option>
-            </optgroup >
+            <div class="calculate">
+                <label for="calculate"><p></p></label>
+                <button type="button" id="calculate-button">
+                    <i class="fas fa-calculator"></i>
+                </button>
+            </div>
+        </div>
 
-            <optgroup label="Cryptocurrencies">
-                <option value="BTC">Bitcoin (BTC)</option>
-                <option value="ETH">Ethereum (ETH)</option>
-                <option value="USDT">Tether (USDT)</option>
-                <option value="ADA">Cardano (ADA)</option>
-                <option value="SOL">Solana (SOL)</option>
-                <option value="XRP">Ripple (XRP)</option>
-                <option value="DOT">Polkadot (DOT)</option>
-                <option value="DOGE">Dogecoin (DOGE)</option>
-                <option value="SHIB">Shiba Inu (SHIB)</option>
-            </optgroup >
-        </select>
-        
-        <label for="p-u">P.U.</label>
-        <input type="text" id="p-u" name="p-u" readonly/>
-
-        <label for="quantity-from">Amount to Invest</label>
-        <input type="text" id="quantity-from" name="quantity-from" />
-
-        <button type="button" id="calculate-button">
-            <i class="fas fa-calculator"></i>
-        </button>
-
-        <label for="quantity-to">Amount Acquired</label>
-        <input type="text" id="quantity-to" name="quantity-to" readonly/>
+        <div class="confirm-container">
+            <div class="acquired">
+                <label for="quantity-to">Amount Acquired</label>
+                <input type="text" id="quantity-to" name="quantity-to" readonly/>
+            </div>
+            <div class="confirm">
+                <label for="confirm"><p></p></label>
+                <button type="button" id="confirm-button">
+                    <i class="fa-solid fa-check"></i>
+                </button>
+            </div>
+        </div>
     </form>
-    <button type="button" id="confirm-button">
-        <i class="fa-solid fa-check"></i>
-    </button>
+
 </div>
 
 {% endblock contenido %}
