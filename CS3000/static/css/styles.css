@@ -41,11 +41,11 @@ header {
   background-color: var(--color2);
   color: var(--color5);
   position: relative;
-  height: 30px;
-  line-height: 30px;
-  padding-left: 35px;
-  padding-right: 35px;
-  font-size: 15px;
+  height: 35px;
+  line-height: 35px;
+  padding-left: 260px;
+  padding-right: 260px;
+  font-size: 20px;
   text-align: center;
 }
 
@@ -66,7 +66,6 @@ header {
 
 .navbar a:hover {
   color: var(--hover);
-  font-size: 110%;
   color: #87e895;
   font-style: bold;
 }
@@ -76,6 +75,7 @@ header {
   position: relative;
   cursor: pointer;
   padding: auto;
+  text-align: center;
 }
 
 .disabled {
@@ -84,24 +84,6 @@ header {
   text-decoration: none;
   color: #888;
 }
-
-/* .tooltip {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
-  background-color: #000;
-  color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 14px;
-  transition: opacity 0.3s;
-}
-
-.icon:hover .tooltip {
-  opacity: 10;
-} */
 
 main {
   max-width: 1000px;
@@ -175,33 +157,13 @@ tr.error + tr td {
   padding-bottom: 13px;
 }
 
-/* ESTILOS DEL BALANCE */
+/* ESTILOS PARA FORMULARIO STATUS */
 
-#user-balance {
-  background-color: var(--color0);
-  color: var(--neutral-100);
-  padding: 10px;
-  margin-bottom: 20px;
-  border: var(--default-border);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-  border-radius: 5px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-#user-balance p {
-  margin: 0;
-}
-
-.label-container label {
-  flex: 1;
-  text-align: start;
-  width: 100%;
-}
-
+.label-container label,
 .invest label,
 .acquired label {
+  flex: 1;
+  text-align: start;
   width: 100%;
 }
 
@@ -252,33 +214,14 @@ tr.error + tr td {
   display: grid;
 }
 
-/* ESTILOS PARA FORMULARIO STATUS */
-
-.user-balance {
-  background-color: var(--color4);
-  color: var(--neutral-100);
-  padding: 10px;
-  text-align: center;
-  font-size: 18px;
-}
-
 .status-container .paper {
   width: 100%;
   margin: 0;
 }
 
-.status-container .grid {
-  border: var(--default-border);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-}
-
 .status-container .grid1 {
   max-height: 500px;
   overflow-y: auto;
-}
-
-.status-container .titulo-tabla {
-  border-bottom: var(--default-line);
 }
 
 .status-container {
@@ -289,13 +232,10 @@ tr.error + tr td {
   display: inline-block;
 }
 
-.status-container details summary {
+.status-container details summary,
+.status-container details textarea {
   display: inline-block;
   cursor: pointer;
-}
-
-.status-container details textarea {
-  display: block;
 }
 
 .status-container .titulo-tabla th,
@@ -303,8 +243,34 @@ tr.error + tr td {
   color: var(--color3);
 }
 
-/* ESTILOS PARA LOS BOTONES */
+/* ESTILOS DEL BALANCE */
 
+#user-balance p {
+  margin: 0;
+}
+
+#user-balance {
+  background-color: var(--color0);
+  color: var(--neutral-100);
+  padding: 10px;
+  margin-bottom: 20px;
+  border: var(--default-border);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.user-balance {
+  background-color: var(--color4);
+  color: var(--neutral-100);
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* ESTILOS PARA LOS BOTONES */
 #page-buttons,
 #boton-recarga {
   padding: 20px;
