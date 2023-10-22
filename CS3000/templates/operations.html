@@ -6,7 +6,7 @@
 
 {% block contenido %}
 <div id="conversion-form">
-    <div id="user-balance">
+    <div id="user-balance" class="user-balance">
         <p>Balance: 10,000 €</p>
     </div>
     <form id="conversion" action="/submit-conversion" method="post">
@@ -97,6 +97,12 @@
         </div>
     </form>
 
+</div>
+
+<div id="page-buttons">
+    <a href="/home" class="page-button">Home</a>
+    <a href="/status" class="page-button">Status</a>
+    <a href="/login" class="page-button">Logout</a>
 </div>
 
 {% endblock contenido %}
