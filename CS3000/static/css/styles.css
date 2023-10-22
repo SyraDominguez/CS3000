@@ -85,6 +85,22 @@ header {
   color: #888;
 }
 
+@media (max-width: 995px) {
+  .navbar {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .navbar a span {
+    font-size: 0;
+  }
+
+  .navbar a::before {
+    content: "\00a0";
+    visibility: visible;
+  }
+}
+
 main {
   max-width: 1000px;
   margin: auto;
