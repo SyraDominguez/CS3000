@@ -12,7 +12,7 @@ from .models import DBManager
 def listar_movimimientos():
     try:
         db = DBManager(app.config['RUTA'])
-        sql = 'SELECT id, date, time, coinfrom, qinvest, cointo, qreceive FROM movements'
+        sql = 'SELECT id, date, time, coinfrom, qinvest, cointo, pu, qreceive FROM movements'
         movs = db.consultaSQL(sql)
         resultado = {
             'results': movs,
