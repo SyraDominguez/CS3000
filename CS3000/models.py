@@ -44,31 +44,9 @@ class DBManager:
 
         return self.registros
 
-    def borrar(self, id):
-        """
-        DELETE FROM movimientos WHERE id = ?
-            Diferenciar entre que falle la operacion y que la operacion
-            no tenga efecto sobre la base de datos
-        """
-
-        sql = 'DELETE FROM movimientos WHERE id=?'
-        conexion = sqlite3.connect(self.ruta)
-        cursor = conexion.cursor()
-
-        resultado = False
-        try:
-            cursor.execute(sql, (id,))
-            conexion.commit()
-            resultado = True
-        except:
-            conexion.rollback()
-
-        conexion.close()
-        return resultado
-
     def obtenerMovimiento(self, id):
 
-        consulta = 'SELECT id, date, time, coinfrom, qinvest, cointo, qreceive FROM movements WHERE id=?'
+        consulta = 'SELECT id, date, time, coinfrom, qinvest, cointo, pu, qreceive FROM movements WHERE id=?'
 
         conexion, cursor = self.conectar()
 
@@ -90,4 +68,21 @@ class DBManager:
             resultado = movimiento
 
         self.desconectar(conexion)
+        return resultado
+
+    def borrar(self, id):
+
+        sql = 'DELETE FROM , WHERE id=?'
+        conexion = sqlite3.connect(self.ruta)
+        cursor = conexion.cursor()
+
+        resultado = False
+        try:
+            cursor.execute(sql, (id,))
+            conexion.commit()
+            resultado = True
+        except:
+            conexion.rollback()
+
+        conexion.close()
         return resultado
