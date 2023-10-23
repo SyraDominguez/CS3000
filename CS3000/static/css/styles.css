@@ -85,7 +85,7 @@ header {
   color: #888;
 }
 
-@media (max-width: 995px) {
+@media (max-width: 1013px) {
   .navbar {
     padding-left: 0;
     padding-right: 0;
