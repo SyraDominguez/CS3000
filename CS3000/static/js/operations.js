@@ -56,6 +56,45 @@ window.addEventListener('DOMContentLoaded', (event) => {
         });
     });
 
+    // Obtener el precio de una moneda from en moneda to
+    async function getExchangeRate(coinFrom, coinTo) {
+        const response = await fetch(`/operations/${coinFrom}/${coinTo}`);
+        const data = await response.json();
+        return data.rate;
+    }
+
+    // Inyectar los datos obtenidos en la pagina
+    function injectData(data) {
+        const puField = document.getElementById('p-u');
+        puField.value = data.rate;
+
+        const amountToField = document.getElementById('quantity-to');
+        amountToField.value = data.amount_to;
+    }
+
+    // Vincular el evento del click del boton 'calculate'
+    
+    const calculateButton = document.getElementById('calculate-button');
+    calculateButton.addEventListener('click', async () => {
+        const coinFrom = document.getElementById('coin-from').value;
+        const coinTo = document.getElementById('coin-to').value;
+        const quantityFrom = parseFloat(document.getElementById('quantity-from').value);
+
+        const rate = await getExchangeRate(coinFrom, coinTo);
+        const amountTo = quantityFrom * rate;
+
+        const data = {
+            rate,
+            amount_to: amountTo
+        };
+
+        injectData(data);
+    });
+
+    
+
+
+    
 
 });
 

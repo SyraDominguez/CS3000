@@ -19,12 +19,6 @@ def home():
     return render_template('home.html', current_page=current_page)
 
 
-@app.route('/operations')
-def operar():
-    current_page = 'operations.html'
-    return render_template('operations.html', current_page=current_page)
-
-
 @app.route('/status')
 def checking():
     current_page = 'status.html'
