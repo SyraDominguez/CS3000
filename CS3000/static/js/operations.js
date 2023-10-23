@@ -1,10 +1,7 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-<<<<<<< HEAD
 
     //Deshabilitar las monedas
 
-=======
->>>>>>> 1d52c3c9620da2500c148b1813310bee560c2a82
     const peticion = new XMLHttpRequest();
     
     const coinFromSelect = document.getElementById('coin-from');
@@ -61,8 +58,4 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 
 });
-<<<<<<< HEAD
-
-=======
->>>>>>> 1d52c3c9620da2500c148b1813310bee560c2a82
 
