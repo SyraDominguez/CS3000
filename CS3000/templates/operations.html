@@ -34,47 +34,48 @@
                     </optgroup >
                 </select>
             </div>  
-        <div class = "currencies-container">    
-            <div class="currency_to">    
-                <div class="label-container">
-                    <span>
-                        <label for="coin-to">Coin To</label>
-                    </span>
+            
+            <div class = "currencies-container">    
+                <div class="currency_to">    
+                    <div class="label-container">
+                        <span>
+                            <label for="coin-to">Coin To</label>
+                        </span>
+                        
+                    </div>
+                    <select id="coin-to" name="coin-to">
+                        <optgroup label="Currencies">
+                            <option value="EUR">Euro (EUR)</option>
+                            <option value="USD">US Dolar (USD)</option>
+
+                        </optgroup >
                     
+                        <optgroup label="Cryptocurrencies">
+                            <option value="BTC" selected>Bitcoin (BTC)</option>
+                            <option value="ETH">Ethereum (ETH)</option>
+                            <option value="USDT">Tether (USDT)</option>
+                            <option value="ADA">Cardano (ADA)</option>
+                            <option value="SOL">Solana (SOL)</option>
+                            <option value="XRP">Ripple (XRP)</option>
+                            <option value="DOT">Polkadot (DOT)</option>
+                            <option value="DOGE">Dogecoin (DOGE)</option>
+                            <option value="SHIB">Shiba Inu (SHIB)</option>
+                        </optgroup >
+                    </select>
                 </div>
-                <select id="coin-to" name="coin-to">
-                    <optgroup label="Currencies">
-                        <option value="EUR">Euro (EUR)</option>
-                        <option value="USD">US Dolar (USD)</option>
 
-                    </optgroup >
-                
-                    <optgroup label="Cryptocurrencies">
-                        <option value="BTC" selected>Bitcoin (BTC)</option>
-                        <option value="ETH">Ethereum (ETH)</option>
-                        <option value="USDT">Tether (USDT)</option>
-                        <option value="ADA">Cardano (ADA)</option>
-                        <option value="SOL">Solana (SOL)</option>
-                        <option value="XRP">Ripple (XRP)</option>
-                        <option value="DOT">Polkadot (DOT)</option>
-                        <option value="DOGE">Dogecoin (DOGE)</option>
-                        <option value="SHIB">Shiba Inu (SHIB)</option>
-                    </optgroup >
-                </select>
+                <div class="currency_pu">
+                    <div class="label-container">
+                        <label for="pu">P.U.</label>
+                    </div >
+                    <input type="text" id="pu" name="pu" readonly/>
+                </div>
             </div>
-
-            <div class="currency_pu">
-                <div class="label-container">
-                    <label for="p-u">P.U.</label>
-                </div >
-                <input type="text" id="p-u" name="p-u" readonly/>
-            </div>
-        </div>
 
         <div class="calculate-container">
             <div class="invest">
-                <label for="quantity-from">Amount Invest</label>
-                <input type="number" id="quantity-from" name="quantity-from" required min="1"/>
+                <label for="amount_invest">Amount Invest</label>
+                <input type="number" id="amount_invest" name="amount_invest" required min="1"/>
             </div>
     
             <div class="calculate">
@@ -87,8 +88,8 @@
 
         <div class="confirm-container">
             <div class="acquired">
-                <label for="quantity-to">Amount Acquired</label>
-                <input type="text" id="quantity-to" name="quantity-to" readonly/>
+                <label for="amount_acquired">Amount Acquired</label>
+                <input type="text" id="amount_acquired" name="amount_acquired" readonly/>
             </div>
             <div class="confirm">
                 <label for="confirm"></label>
