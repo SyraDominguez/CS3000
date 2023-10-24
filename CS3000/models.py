@@ -1,88 +1,41 @@
-from datetime import date
+from datetime import datetime
 import sqlite3
 
-"""SELECT id, date, time, coinfrom, qinvest, cointo, qreceive FROM movements;"""
+
+from datetime import date
+import sqlite3
 
 
 class DBManager:
 
-    def conectar(self):
-        conexion = sqlite3.connect(self.ruta)
-        cursor = conexion.cursor()
-        return conexion, cursor
-
-    def desconectar(self, conexion):
-        conexion.close()
-
     def __init__(self, ruta):
         self.ruta = ruta
 
+    # Conectar a la base de datos SQLite en la ruta especificada.
+    def conectar(self):
+        self.conexion = sqlite3.connect(self.ruta)
+        self.cursor = self.conexion.cursor()
+
+    # Cerrar la conexión a la base de datos.
+    def desconectar(self):
+        self.conexion.close()
+
+    # Consulta a Base de Datos
     def consultaSQL(self, consulta):
+        self.conectar()
+        self.cursor.execute(consulta)
+        datos = self.cursor.fetchall()
+        self.desconectar()
+        return datos
 
-        conexion = sqlite3.connect(self.ruta)
-
-        cursor = conexion.cursor()
-
-        cursor.execute(consulta)
-
-        datos = cursor.fetchall()
-
-        self.registros = []
-        nombres_columna = []
-        for columna in cursor.description:
-            nombres_columna.append(columna[0])
-
-        for dato in datos:
-            movimiento = {}
-            indice = 0
-            for nombre in nombres_columna:
-                movimiento[nombre] = dato[indice]
-                indice += 1
-            self.registros.append(movimiento)
-
-        conexion.close()
-
-        return self.registros
-
+    # Consulta para obtener un movimiento por su ID.
     def obtenerMovimiento(self, id):
-
-        consulta = 'SELECT id, date, time, coinfrom, qinvest, cointo, pu, qreceive FROM movements WHERE id=?'
-
-        conexion, cursor = self.conectar()
-
-        cursor.execute(consulta, (id,))
-
-        datos = cursor.fetchone()
+        consulta = 'SELECT id, date, time, coin_from, amount_invest, coin_to, pu, amount_acquired FROM movements WHERE id=?'
+        self.conectar()
+        self.cursor.execute(consulta, (id,))
+        datos = self.cursor.fetchone()
         resultado = None
         if datos:
-            nombres_columna = []
-            for columna in cursor.description:
-                nombres_columna.append(columna[0])
-
-            movimiento = {}
-            indice = 0
-            for nombre in nombres_columna:
-                movimiento[nombre] = datos[indice]
-                indice += 1
-            movimiento['date'] = date.fromisoformat(movimiento['date'])
-            resultado = movimiento
-
-        self.desconectar(conexion)
-        return resultado
-
-    def borrar(self, id):
-
-        sql = 'DELETE FROM , WHERE id=?'
-        conexion = sqlite3.connect(self.ruta)
-        cursor = conexion.cursor()
-
-        resultado = False
-        try:
-            cursor.execute(sql, (id,))
-            conexion.commit()
-            resultado = True
-        except:
-            conexion.rollback()
-
-        conexion.close()
+            resultado = datos
+        self.desconectar()
         return resultado
