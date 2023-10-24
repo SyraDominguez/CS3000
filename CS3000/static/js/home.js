@@ -22,12 +22,12 @@ function mostrarMovimientos() {
             html += `
                 <tr>
                     <td>${mov.date}</td>
-                    <td>${mov.date}</td>
-                    <td>${mov.coinfrom}</td>
-                    <td>${mov.qinvest}</td>
-                    <td>${mov.cointo}</td>
+                    <td>${mov.time}</td>
+                    <td>${mov.coin_from}</td>
+                    <td>${mov.amount_invest}</td>
+                    <td>${mov.coin_to}</td>
                     <td>${mov.pu}</td>
-                    <td>${mov.qreceive}</td>
+                    <td>${mov.amount_acquired}</td>
                 </tr>
             `;
         }
@@ -35,6 +35,7 @@ function mostrarMovimientos() {
 
     const tabla = document.querySelector('#cuerpo-tabla');
     tabla.innerHTML = html;
+
 }
 
 window.onload = function() {
