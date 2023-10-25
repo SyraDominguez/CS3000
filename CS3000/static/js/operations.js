@@ -85,4 +85,50 @@ window.addEventListener('DOMContentLoaded', (event) => {
         injectExchangeRate(amountInvest, coinFrom, coinTo, rate);
     });
 
+
+    // Función para confirmar la operación.
+    async function confirmOperation() {
+        const coinFrom = document.getElementById('coin-from').value;
+        const coinTo = document.getElementById('coin-to').value;
+        const amountInvest = parseFloat(document.getElementById('amount_invest').value);
+        const amountAcquired = parseFloat(document.getElementById('amount_acquired').value);
+        const date = new Date();
+        const time = date.toLocaleTimeString();
+        
+        try {
+            // Obtenemos el tipo de cambio.
+            const rate = await getExchangeRate(coinFrom, coinTo);
+
+            // Enviamos los datos de la operación a la base de datos.
+            const request = new Request('/submit-conversion', {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    coin_from: coinFrom,
+                    amount_invest: amountInvest,
+                    coin_to: coinTo,
+                    amount_acquired: amountAcquired,
+                    date: date.toLocaleDateString(),
+                    time: time,
+                    pu: rate 
+                })
+            });
+
+            const response = await fetch(request);
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                alert('Operación realizada correctamente');
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Error al obtener el tipo de cambio.');
+        }
+    }
+
+    // Vincular el evento click del botón 'confirm' a la función 'confirmOperation()'.
+    document.getElementById('confirm-button').addEventListener('click', confirmOperation);
+
 });

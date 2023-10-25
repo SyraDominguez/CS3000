@@ -105,20 +105,7 @@ def operar():
             if response.status_code == 200:
                 data = response.json()
                 rate = data['rate']
-                amount_acquired = amount_invest * rate
 
-                try:
-                    resultado = {
-                        'status': 'success',
-                        'message': 'Operación realizada correctamente'
-                    }
-                    status_code = 200
-                except Exception as ex:
-                    resultado = {
-                        'status': 'error',
-                        'message': str(ex)
-                    }
-                    status_code = 500
             else:
                 error_response = {
                     'error_message': 'Error al obtener el precio de la moneda'
@@ -163,3 +150,27 @@ def cambiar_moneda(coin_from, coin_to):
             'error_message': 'Error al obtener el precio de la moneda'
         }
         return jsonify(error_response), 500
+
+
+@app.route('/submit-conversion', methods=['POST'])
+def submit_conversion():
+
+    # # Obtener los datos de la operación de la solicitud POST.
+    operation_data = request.json
+
+    # Guardar los datos de la operación en la base de datos.
+    db.guardarMovimiento(
+        operation_data['coin_from'],
+        operation_data['amount_invest'],
+        operation_data['coin_to'],
+        operation_data['amount_acquired'],
+        operation_data['date'],
+        operation_data['time'],
+        operation_data['pu']
+    )
+
+    # Devolver una respuesta al cliente.
+    return jsonify({
+        'status': 'success',
+        'message': 'Operación realizada correctamente'
+    })

@@ -28,6 +28,19 @@ class DBManager:
         self.desconectar()
         return datos
 
+    # Guardar el movimiento en Base de Datos
+    def guardarMovimiento(self, coin_from, amount_invest, coin_to, amount_acquired, date, time, pu=0):
+        consulta = """
+            INSERT INTO movements (coin_from, amount_invest, coin_to, amount_acquired, date, time, pu)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """
+
+        self.conectar()
+        self.cursor.execute(
+            consulta, (coin_from, amount_invest, coin_to, amount_acquired, date, time, pu))
+        self.conexion.commit()
+        self.desconectar()
+
     # Consulta para obtener un movimiento por su ID.
     def obtenerMovimiento(self, id):
         consulta = 'SELECT id, date, time, coin_from, amount_invest, coin_to, pu, amount_acquired FROM movements WHERE id=?'
