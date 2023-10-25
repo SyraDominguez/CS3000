@@ -152,7 +152,7 @@ def cambiar_moneda(coin_from, coin_to):
         return jsonify(error_response), 500
 
 
-@app.route('/submit-conversion', methods=['POST'])
+@app.route('/api/v1/submit-conversion', methods=['POST'])
 def submit_conversion():
 
     # # Obtener los datos de la operación de la solicitud POST.

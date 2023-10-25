@@ -100,7 +100,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             const rate = await getExchangeRate(coinFrom, coinTo);
 
             // Enviamos los datos de la operación a la base de datos.
-            const request = new Request('/submit-conversion', {
+            const request = new Request('/api/v1/submit-conversion', {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
