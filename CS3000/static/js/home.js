@@ -3,42 +3,56 @@ const peticion = new XMLHttpRequest();
 function cargarMovimientos() {
     peticion.open('GET', 'http://localhost:5000/api/v1/movimientos', true);
     peticion.send();
-}
+    }
 
 function mostrarMovimientos() {
     const resultados = JSON.parse(peticion.responseText);
     const movimientos = resultados.results;
 
-    let html = '';
-    if (movimientos.length === 0) {
-        html = `
-            <tr>
-                <td colspan="7" class="lista-vacia">NO MOVEMENTS</td>
-            </tr>
-        `;
+    // Obtener los movimientos de compra de euros a otra moneda
+    const movimientosCompra = movimientos.filter((movimiento) => movimiento.coin_from === 'EUR');
+
+    // Inicializar el contador en 10.000 euros si no hay movimientos
+    let contador = document.getElementById('contador');
+    if (movimientosCompra.length === 0) {
+    contador.innerText = '€10.000';
     } else {
-        for (let i = 0; i < movimientos.length; i++) {
-            const mov = movimientos[i];
-            html += `
-                <tr>
-                    <td>${mov.date}</td>
-                    <td>${mov.time}</td>
-                    <td>${mov.coin_from}</td>
-                    <td>${mov.amount_invest}</td>
-                    <td>${mov.coin_to}</td>
-                    <td>${mov.pu}</td>
-                    <td>${mov.amount_acquired}</td>
-                </tr>
-            `;
-        }
+    // Restar el valor de los movimientos del contador
+    contador.innerText = (
+        movimientosCompra.reduce((total, movimiento) => total - movimiento.amount_invest, 10000)
+        ).toFixed(2) + ' €';
+
     }
 
+    // Mostrar los movimientos en la tabla
     const tabla = document.querySelector('#cuerpo-tabla');
-    tabla.innerHTML = html;
+    tabla.innerHTML = '';
+    for (let i = 0; i < movimientos.length; i++) {
+        const mov = movimientos[i];
+        tabla.innerHTML += `
+        <tr>
+            <td>${mov.date}</td>
+            <td>${mov.time}</td>
+            <td>${mov.coin_from}</td>
+            <td>${mov.amount_invest}</td>
+            <td>${mov.coin_to}</td>
+            <td>${mov.pu}</td>
+            <td>${mov.amount_acquired}</td>
+        </tr>
+        `;
+    }
+
+    if (movimientos.length === 0) {
+        tabla.innerHTML = `
+        <tr>
+            <td colspan = "7" class="lista-vacia">NO MOVEMENTS</td>
+        </tr>
+        `;
+    }
 
 }
 
-window.onload = function() {
+    window.onload = function() {
     const boton = document.getElementById('boton-recarga');
     boton.addEventListener('click', () => {
         cargarMovimientos();

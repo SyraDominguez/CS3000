@@ -259,13 +259,14 @@ tr.error + tr td {
   color: var(--color3);
 }
 
-/* ESTILOS DEL BALANCE */
+/* ESTILOS DEL CONTADOR Y DEL BALANCE */
 
 #user-balance p {
   margin: 0;
 }
 
-#user-balance {
+#user-balance,
+#contador {
   background-color: var(--color0);
   color: var(--neutral-100);
   padding: 10px;
@@ -340,16 +341,35 @@ tr.error + tr td {
 }
 
 #button-container {
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#titulo-contador {
+  display: flex;
+  align-items: baseline;
+}
+
+#titulo {
+  margin-right: 25px;
+}
+
+#contador {
+  box-shadow: none;
+  font-size: xx-large;
 }
 
 #boton-recarga {
-  padding: 6px 12px;
+  padding: 8px 16px;
   background-color: var(--color2);
   color: var(--color5);
   text-decoration: none;
+  width: 150px;
   font-size: 20px;
   margin: 5px 0;
+  margin-right: 5px;
+  margin-bottom: 25px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
