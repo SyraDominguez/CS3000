@@ -87,7 +87,7 @@ def operar():
 
     if request.method == 'GET':
         # Devolver el formulario vacío con la lista de monedas disponibles.
-        currencies = {'currencies': CURRENCIES}
+        currencies = {'currencies': CURRENCIES, 'user_balance': 10000}
         current_page = 'operations.html'
         return render_template('operations.html', current_page=current_page, **currencies)
 
@@ -150,6 +150,8 @@ def cambiar_moneda(coin_from, coin_to):
             'error_message': 'Error al obtener el precio de la moneda'
         }
         return jsonify(error_response), 500
+
+# Ruta para guardar el movimiento.
 
 
 @app.route('/api/v1/submit-conversion', methods=['POST'])

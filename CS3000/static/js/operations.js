@@ -127,8 +127,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             alert('Error al obtener el tipo de cambio.');
         }
     }
-
     // Vincular el evento click del botón 'confirm' a la función 'confirmOperation()'.
     document.getElementById('confirm-button').addEventListener('click', confirmOperation);
-
 });
+
