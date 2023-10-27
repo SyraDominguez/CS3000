@@ -159,10 +159,10 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+
 # SYRA
 config.py
-
-# cs3000/data/*.db
+cs3000/data/*.db
 
 # DATOS DE ACCESO 
     User: CS3000
