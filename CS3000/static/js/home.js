@@ -15,14 +15,29 @@ function mostrarMovimientos() {
     // Inicializar el contador en 10.000 euros si no hay movimientos
     let contador = document.getElementById('contador');
     if (movimientosCompra.length === 0) {
-    contador.innerText = '€10.000';
+        contador.innerText = '€10.000';
     } else {
-    // Restar el valor de los movimientos del contador
-    contador.innerText = (
-        movimientosCompra.reduce((total, movimiento) => total - movimiento.amount_invest, 10000)
-        ).toFixed(2) + ' €';
-
+        // Restar el valor de los movimientos del contador
+        contador.innerText = (
+            movimientosCompra.reduce((total, movimiento) => total - movimiento.amount_invest, 10000)
+            ).toFixed(2) + ' €';
     }
+
+    // Sumar el valor de los movimientos de venta de euros a otra moneda
+    const movimientosVenta = movimientos.filter((movimiento) => movimiento.coin_to === 'EUR');
+    let balance = 10000;
+    movimientosVenta.forEach((movimiento) => {
+        balance += movimiento.amount_acquired;
+    });
+
+    // Restar el valor de los movimientos de compra de euros a otra moneda
+    const movimientosCompraEUR = movimientos.filter((movimiento) => movimiento.coin_from === 'EUR');
+    movimientosCompraEUR.forEach((movimiento) => {
+        balance -= movimiento.amount_invest;
+    });
+
+    // Actualizar el contador con el nuevo balance
+    contador.innerText = balance.toFixed(2) + ' €';
 
     // Mostrar los movimientos en la tabla
     const tabla = document.querySelector('#cuerpo-tabla');
@@ -49,9 +64,10 @@ function mostrarMovimientos() {
         </tr>
         `;
     }
-
 }
 
+
+    
     window.onload = function() {
     const boton = document.getElementById('boton-recarga');
     boton.addEventListener('click', () => {
