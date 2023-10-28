@@ -65,8 +65,6 @@ function mostrarMovimientos() {
         `;
     }
 }
-
-
     
     window.onload = function() {
     const boton = document.getElementById('boton-recarga');

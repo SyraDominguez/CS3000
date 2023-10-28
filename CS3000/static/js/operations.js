@@ -129,5 +129,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     // Vincular el evento click del botón 'confirm' a la función 'confirmOperation()'.
     document.getElementById('confirm-button').addEventListener('click', confirmOperation);
+
+    const clearButton = document.querySelector("#clear-button");
+
+    clearButton.addEventListener("click", function() {
+        // Limpia la página
+        document.getElementById("conversion").reset();
+    });
+
 });
 
