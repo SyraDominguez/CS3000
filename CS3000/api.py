@@ -176,3 +176,26 @@ def submit_conversion():
         'status': 'success',
         'message': 'Operación realizada correctamente'
     })
+
+# Ruta para obtener el total invertido
+
+
+@app.route('/api/v1/total-investment', methods=['GET'])
+def total_investment():
+    try:
+        # Obtener los movimientos de compra de euros a otras monedas.
+        movimientosCompra = db.consultaSQL(
+            'SELECT amount_invest FROM movements WHERE coin_from="EUR"')
+
+        # Calcular el total invertido.
+        total_invest = sum(movimiento[0] for movimiento in movimientosCompra)
+
+        return jsonify({
+            'total_invest': total_invest,
+            'status': 'success'
+        }), 200
+    except Exception as ex:
+        return jsonify({
+            'status': 'error',
+            'message': str(ex)
+        }), 500
