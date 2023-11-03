@@ -199,3 +199,37 @@ def total_investment():
             'status': 'error',
             'message': str(ex)
         }), 500
+
+# Ruta para obtener el valor total de las criptomonedas del usuario.
+
+
+@app.route('/api/v1/crypto-total-value', methods=['GET'])
+def get_crypto_total_value():
+    try:
+        # Obtener la lista de monedas que el usuario ha comprado.
+        movimientosCompra = db.consultaSQL(
+            'SELECT coin_to, amount_acquired FROM movements WHERE coin_from="EUR"')
+
+        total_value = 0
+
+        for movimiento in movimientosCompra:
+            coin_to, amount_acquired = movimiento
+            # Obtener el tipo de cambio actual.
+            api_url = f'{COINAPI_BASE_URL}/exchangerate/{coin_to}/EUR?apikey={API_KEY}'
+            response = requests.get(api_url)
+
+            if response.status_code == 200:
+                data = response.json()
+                rate = data['rate']
+                total_value += rate * amount_acquired
+
+        return jsonify({
+            'total_value': total_value,
+            'status': 'success'
+        }), 200
+
+    except Exception as ex:
+        return jsonify({
+            'status': 'error',
+            'message': str(ex)
+        }), 500
