@@ -200,31 +200,27 @@ def total_investment():
             'message': str(ex)
         }), 500
 
-# Ruta para obtener el valor total de las criptomonedas del usuario.
+# Ruta para obtener la lista de criptomonedas que el usuario ha comprado.
 
 
-@app.route('/api/v1/crypto-total-value', methods=['GET'])
-def get_crypto_total_value():
+@app.route('/api/v1/crypto-list', methods=['GET'])
+def get_crypto_list():
     try:
         # Obtener la lista de monedas que el usuario ha comprado.
         movimientosCompra = db.consultaSQL(
             'SELECT coin_to, amount_acquired FROM movements WHERE coin_from="EUR"')
 
-        total_value = 0
-
+        # Crear una lista de diccionarios con la información de cada criptomoneda.
+        crypto_list = []
         for movimiento in movimientosCompra:
             coin_to, amount_acquired = movimiento
-            # Obtener el tipo de cambio actual.
-            api_url = f'{COINAPI_BASE_URL}/exchangerate/{coin_to}/EUR?apikey={API_KEY}'
-            response = requests.get(api_url)
-
-            if response.status_code == 200:
-                data = response.json()
-                rate = data['rate']
-                total_value += rate * amount_acquired
+            crypto_list.append({
+                'coin_to': coin_to,
+                'amount_acquired': amount_acquired
+            })
 
         return jsonify({
-            'total_value': total_value,
+            'results': crypto_list,
             'status': 'success'
         }), 200
 
@@ -233,3 +229,37 @@ def get_crypto_total_value():
             'status': 'error',
             'message': str(ex)
         }), 500
+
+# Ruta para obtener el valor total de las criptomonedas del usuario.
+
+
+# @app.route('/api/v1/crypto-total-value', methods=['GET'])
+# def get_crypto_total_value():
+#     try:
+#         # Obtener la lista de monedas que el usuario ha comprado.
+#         movimientosCompra = db.consultaSQL(
+#             'SELECT coin_to, amount_acquired FROM movements WHERE coin_from="EUR"')
+
+#         total_value = 0
+
+#         for movimiento in movimientosCompra:
+#             coin_to, amount_acquired = movimiento
+#             # Obtener el tipo de cambio actual.
+#             api_url = f'{COINAPI_BASE_URL}/exchangerate/{coin_to}/EUR?apikey={API_KEY}'
+#             response = requests.get(api_url)
+
+#             if response.status_code == 200:
+#                 data = response.json()
+#                 rate = data['rate']
+#                 total_value += rate * amount_acquired
+
+#         return jsonify({
+#             'total_value': total_value,
+#             'status': 'success'
+#         }), 200
+
+#     except Exception as ex:
+#         return jsonify({
+#             'status': 'error',
+#             'message': str(ex)
+#         }), 500
