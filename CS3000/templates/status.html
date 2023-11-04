@@ -36,18 +36,20 @@
             <th>Cryptocurrency</th>
             <th>Amount</th>
         </tr>
-        {% if operaciones %}
-            {% for operacion in operaciones %}
+        <div id="list-cryptos">
+            {% if operaciones %}
+                {% for operacion in operaciones %}
+                    <tr>
+                        <td>{{ operacion[0] }}</td>  <!-- Nombre de la criptomoneda -->
+                        <td>{{ operacion[1] }}</td>  <!-- Cantidad adquirida -->
+                    </tr>
+                {% endfor %}
+            {% else %}
                 <tr>
-                    <td>{{ operacion[0] }}</td>  <!-- Nombre de la criptomoneda -->
-                    <td>{{ operacion[1] }}</td>  <!-- Cantidad adquirida -->
+                    <td colspan="2">No cryptocurrency movements</td>
                 </tr>
-            {% endfor %}
-        {% else %}
-            <tr>
-                <td colspan="2">No cryptocurrency movements</td>
-            </tr>
-        {% endif %}
+            {% endif %}
+        </div>
     </table>
 </div>
 

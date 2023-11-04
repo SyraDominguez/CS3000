@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     cargarTotalInvestment();
+    cargarListaCriptos();
 
     document.getElementById('boton-recarga-status').addEventListener('click', function() {
         // Recargando la pagina.
@@ -66,4 +67,32 @@ function cargarCryptoTotalValue() {
     } else {
         return Promise.resolve(parseFloat(totalCryptoValueField.value));
     }
+}
+
+function cargarListaCriptos() {
+    const listaCriptosField = document.getElementById('list-cryptos');
+
+    fetch('/api/v1/crypto-list')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                listaCriptosField.innerHTML = '';
+
+                data.results.forEach(cripto => {
+                    let tr = document.createElement('tr');
+
+                    tr.appendChild(document.createTextNode(cripto.coin_to));
+                    tr.appendChild(document.createTextNode(cripto.amount_acquired));
+
+                    listaCriptosField.appendChild(tr);
+                });
+            } else {
+                console.error(data.message);
+                listaCriptosField.innerHTML = 'Error al cargar la lista de criptomonedas';
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            listaCriptosField.innerHTML = 'Error al cargar la lista de criptomonedas';
+        });
 }
