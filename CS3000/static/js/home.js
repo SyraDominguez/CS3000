@@ -27,13 +27,13 @@ function mostrarMovimientos() {
     const movimientosVenta = movimientos.filter((movimiento) => movimiento.coin_to === 'EUR');
     let balance = 10000;
     movimientosVenta.forEach((movimiento) => {
-        balance += movimiento.amount_acquired;
+    balance += movimiento.amount_acquired;
     });
 
     // Restar el valor de los movimientos de compra de euros a otra moneda
     const movimientosCompraEUR = movimientos.filter((movimiento) => movimiento.coin_from === 'EUR');
     movimientosCompraEUR.forEach((movimiento) => {
-        balance -= movimiento.amount_invest;
+    balance -= movimiento.amount_invest;
     });
 
     // Actualizar el contador con el nuevo balance
