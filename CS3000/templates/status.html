@@ -6,13 +6,13 @@
 
 {% block contenido %}
 
+<br>
+
 <div class="status-container">
     <table class="paper grid grid1">
         <tr class="titulo-tabla">
-
             <th>Total Invest</th>
             <th>Cryptocurrencies Value</th>
-
         </tr>
         <tr>
             <td>
@@ -21,7 +21,6 @@
             <td>
                 <input type="number" id="valor-criptos" name="valor-criptos" readonly>
             </td>
-
         </tr>
     </table>
     <br>
@@ -34,23 +33,21 @@
         
     <table class="paper grid grid1">
         <tr class="titulo-tabla">
-            <th>Details by Cryptos</th>
+            <th>Cryptocurrency</th>
+            <th>Amount</th>
         </tr>
-        <tr>
-            <td>
-                <details>
-                    <div class="scrollable-details">
-                        {% if operaciones %}
-                            {% for operacion in operaciones %}
-                                <p>{{ operacion[0] }}: {{ operacion[1] }}</p>
-                            {% endfor %}
-                        {% else %}
-                            <p>No movements</p>
-                        {% endif %}
-                    </div>
-                </details>
-            </td>
-        </tr>
+        {% if operaciones %}
+            {% for operacion in operaciones %}
+                <tr>
+                    <td>{{ operacion[0] }}</td>  <!-- Nombre de la criptomoneda -->
+                    <td>{{ operacion[1] }}</td>  <!-- Cantidad adquirida -->
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="2">No cryptocurrency movements</td>
+            </tr>
+        {% endif %}
     </table>
 </div>
 
@@ -61,3 +58,10 @@
 </div>
 
 {% endblock contenido %}
+
+{% block no_titulo_contador %}
+<div id="titulo-contador">
+    <h4 id="titulo">Balance</h4>
+    <span id="contador">€10.000</span>
+</div>
+{% endblock %}

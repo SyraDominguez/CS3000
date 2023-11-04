@@ -10,18 +10,12 @@ window.addEventListener('DOMContentLoaded', () => {
 function cargarTotalInvestment() {
     const totalInvestmentField = document.getElementById('euros-gastados');
     const totalCryptoValueField = document.getElementById('valor-criptos');
-    const totalBalanceField = document.getElementById('total-balance');
 
     fetch('/api/v1/total-investment')
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
                 totalInvestmentField.value = data.total_invest.toFixed(2);
-
-                // Calcula el total balance como 10,000 - Total Invest.
-                const totalInvest = parseFloat(data.total_invest);
-                const totalBalance = 10000 - totalInvest;
-                totalBalanceField.value = totalBalance.toFixed(2);
 
                 // Llama a la función para cargar el valor total de las criptomonedas.
                 cargarCryptoTotalValue()
@@ -38,15 +32,14 @@ function cargarTotalInvestment() {
                 // Manejo de errores si la solicitud para cargar el total de inversión falla.
                 console.error(data.message);
                 totalInvestmentField.value = 'Error';
-                totalBalanceField.value = 'Error';
             }
         })
         .catch(error => {
             console.error(error);
             totalInvestmentField.value = 'Error';
-            totalBalanceField.value = 'Error';
         });
 }
+
 
 function cargarCryptoTotalValue() {
     const totalCryptoValueField = document.getElementById('valor-criptos');

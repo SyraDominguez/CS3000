@@ -14,7 +14,7 @@ CURRENCIES = [
 
 # URL base de la API externa y clave de API.
 COINAPI_BASE_URL = 'https://rest.coinapi.io/v1'
-API_KEY = 'E454727C-AB73-4CEF-B58B-07AF85EF3328'
+API_KEY = 'E07256C9-4C6F-4E98-BBE7-739664232C20'
 
 # Instancia de DBManager
 db = DBManager(app.config['RUTA'])
