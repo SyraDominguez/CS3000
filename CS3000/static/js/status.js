@@ -1,50 +1,71 @@
-window.addEventListener('DOMContentLoaded', () => {
-    cargarTotalInvestment();
-    cargarListaCriptos();
-
-    document.getElementById('boton-recarga-status').addEventListener('click', function() {
-        // Recargando la pagina.
-        location.reload();
-    });
-});
-
-function cargarTotalInvestment() {
+async function cargarTotalInvestment() {
     const totalInvestmentField = document.getElementById('euros-gastados');
     const totalCryptoValueField = document.getElementById('valor-criptos');
 
-    fetch('/api/v1/total-investment')
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                totalInvestmentField.value = data.total_invest.toFixed(2);
+    try {
+        const response = await fetch('/api/v1/total-investment');
+        const data = await response.json();
 
-                // Llama a la función para cargar el valor total de las criptomonedas.
-                cargarCryptoTotalValue()
-                    .then(totalCryptoValue => {
-                        // Actualiza el campo 'Cryptocurrencies Value' con el valor de las criptomonedas.
-                        totalCryptoValueField.value = totalCryptoValue.toFixed(2);
-                    })
-                    .catch(error => {
-                        // Manejo de errores si la solicitud para cargar el valor de criptomonedas falla.
-                        console.error(error);
-                        totalCryptoValueField.value = 'Error';
-                    });
-            } else {
-                // Manejo de errores si la solicitud para cargar el total de inversión falla.
-                console.error(data.message);
-                totalInvestmentField.value = 'Error';
+        if (data.status === 'success') {
+            totalInvestmentField.value = data.total_invest.toFixed(2);
+
+            // Inyectar el resultado de la función en el campo "Total Invest".
+            const totalInvestFieldInTable = document.querySelector('[id="list-cryptos"] tbody tr:first-child td:first-child');
+            if (totalInvestFieldInTable) {
+                totalInvestFieldInTable.textContent = data.total_invest.toFixed(2);
             }
-        })
-        .catch(error => {
-            console.error(error);
+
+            // Cargar el valor total de las criptomonedas.
+            await cargarCryptoTotalValue();
+        } else {
+            console.error(data.message);
             totalInvestmentField.value = 'Error';
-        });
+        }
+    } catch (error) {
+        console.error(error);
+        totalInvestmentField.value = 'Error';
+    }
 }
 
+async function cargarListaCriptos() {
+    const listaCriptosField = document.getElementById('list-cryptos');
+
+    await cargarTotalInvestment();
+
+    try {
+        const response = await fetch('/api/v1/crypto-list');
+        const data = await response.json();
+
+        if (data.status === 'success') {
+            listaCriptosField.innerHTML = '';
+
+            data.results.forEach(cripto => {
+                let tr = document.createElement('tr');
+
+                tr.appendChild(document.createTextNode(cripto.coin_to));
+                tr.appendChild(document.createTextNode(cripto.amount_acquired));
+
+                listaCriptosField.appendChild(tr);
+            });
+
+            // Inyectar el resultado de la función en el campo "Total Invest".
+            const totalInvestFieldInTable = document.querySelector('[id="list-cryptos"] tbody tr:first-child td:first-child');
+            if (totalInvestFieldInTable) {
+                totalInvestFieldInTable.textContent = await cargarTotalInvestment();
+            }
+        } else {
+            console.error(data.message);
+            listaCriptosField.innerHTML = 'Error al cargar la lista de criptomonedas';
+        }
+    } catch (error) {
+        console.error(error);
+        listaCriptosField.innerHTML = 'Error al cargar la lista de criptomonedas';
+    }
+}
 
 function cargarCryptoTotalValue() {
     const totalCryptoValueField = document.getElementById('valor-criptos');
-
+    
     if (!totalCryptoValueField.value) {
         return fetch('/api/v1/crypto-total-value')
             .then(response => response.json())
@@ -69,30 +90,12 @@ function cargarCryptoTotalValue() {
     }
 }
 
-function cargarListaCriptos() {
-    const listaCriptosField = document.getElementById('list-cryptos');
-
-    fetch('/api/v1/crypto-list')
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                listaCriptosField.innerHTML = '';
-
-                data.results.forEach(cripto => {
-                    let tr = document.createElement('tr');
-
-                    tr.appendChild(document.createTextNode(cripto.coin_to));
-                    tr.appendChild(document.createTextNode(cripto.amount_acquired));
-
-                    listaCriptosField.appendChild(tr);
-                });
-            } else {
-                console.error(data.message);
-                listaCriptosField.innerHTML = 'Error al cargar la lista de criptomonedas';
-            }
-        })
-        .catch(error => {
-            console.error(error);
-            listaCriptosField.innerHTML = 'Error al cargar la lista de criptomonedas';
-        });
-}
+window.addEventListener('DOMContentLoaded', () => {
+    cargarTotalInvestment();
+    cargarListaCriptos();
+    
+    document.getElementById('boton-recarga-status').addEventListener('click', function() {
+        // Recargando la pagina.
+        location.reload();
+    });
+});
