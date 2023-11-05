@@ -14,7 +14,7 @@ CURRENCIES = [
 
 # URL base de la API externa y clave de API.
 COINAPI_BASE_URL = 'https://rest.coinapi.io/v1'
-API_KEY = 'E07256C9-4C6F-4E98-BBE7-739664232C20'
+API_KEY = '65521F6D-9191-4781-B055-8F284BBC6C28'
 
 # Instancia de DBManager
 db = DBManager(app.config['RUTA'])
@@ -200,8 +200,6 @@ def total_investment():
             'message': str(ex)
         }), 500
 
-# Ruta para obtener la lista de criptomonedas que el usuario ha comprado.
-
 
 @app.route('/api/v1/crypto-list', methods=['GET'])
 def get_crypto_list():
@@ -233,33 +231,33 @@ def get_crypto_list():
 # Ruta para obtener el valor total de las criptomonedas del usuario.
 
 
-# @app.route('/api/v1/crypto-total-value', methods=['GET'])
-# def get_crypto_total_value():
-#     try:
-#         # Obtener la lista de monedas que el usuario ha comprado.
-#         movimientosCompra = db.consultaSQL(
-#             'SELECT coin_to, amount_acquired FROM movements WHERE coin_from="EUR"')
+@app.route('/api/v1/crypto-total-value', methods=['GET'])
+def get_crypto_total_value():
+    try:
+        # Obtener la lista de monedas que el usuario ha comprado.
+        movimientosCompra = db.consultaSQL(
+            'SELECT coin_to, amount_acquired FROM movements WHERE coin_from="EUR"')
 
-#         total_value = 0
+        total_value = 0
 
-#         for movimiento in movimientosCompra:
-#             coin_to, amount_acquired = movimiento
-#             # Obtener el tipo de cambio actual.
-#             api_url = f'{COINAPI_BASE_URL}/exchangerate/{coin_to}/EUR?apikey={API_KEY}'
-#             response = requests.get(api_url)
+        for movimiento in movimientosCompra:
+            coin_to, amount_acquired = movimiento
+            # Obtener el tipo de cambio actual.
+            api_url = f'{COINAPI_BASE_URL}/exchangerate/{coin_to}/EUR?apikey={API_KEY}'
+            response = requests.get(api_url)
 
-#             if response.status_code == 200:
-#                 data = response.json()
-#                 rate = data['rate']
-#                 total_value += rate * amount_acquired
+            if response.status_code == 200:
+                data = response.json()
+                rate = data['rate']
+                total_value += rate * amount_acquired
 
-#         return jsonify({
-#             'total_value': total_value,
-#             'status': 'success'
-#         }), 200
+        return jsonify({
+            'total_value': total_value,
+            'status': 'success'
+        }), 200
 
-#     except Exception as ex:
-#         return jsonify({
-#             'status': 'error',
-#             'message': str(ex)
-#         }), 500
+    except Exception as ex:
+        return jsonify({
+            'status': 'error',
+            'message': str(ex)
+        }), 500
