@@ -228,36 +228,48 @@ def get_crypto_list():
             'message': str(ex)
         }), 500
 
+
 # Ruta para obtener el valor total de las criptomonedas del usuario.
 
+# @app.route('/api/v1/crypto-total-value', methods=['GET'])
+# def get_crypto_total_value():
+#     try:
+#         # Obtener la lista de monedas que el usuario ha comprado.
+#         movimientosCompra = db.consultaSQL(
+#             'SELECT coin_to, amount_acquired FROM movements WHERE coin_from="EUR"')
 
-@app.route('/api/v1/crypto-total-value', methods=['GET'])
-def get_crypto_total_value():
-    try:
-        # Obtener la lista de monedas que el usuario ha comprado.
-        movimientosCompra = db.consultaSQL(
-            'SELECT coin_to, amount_acquired FROM movements WHERE coin_from="EUR"')
+#         # Obtener una lista de las criptomonedas únicas en los movimientos
+#         unique_coins = list(set(coin for coin, _ in movimientosCompra))
 
-        total_value = 0
+#         # Crear un diccionario para almacenar los tipos de cambio
+#         exchange_rates = {}
 
-        for movimiento in movimientosCompra:
-            coin_to, amount_acquired = movimiento
-            # Obtener el tipo de cambio actual.
-            api_url = f'{COINAPI_BASE_URL}/exchangerate/{coin_to}/EUR?apikey={API_KEY}'
-            response = requests.get(api_url)
+#         # Obtener los tipos de cambio de todas las criptomonedas en una sola llamada
+#         for coin in unique_coins:
+#             api_url = f'{COINAPI_BASE_URL}/exchangerate/{coin}/EUR?apikey={API_KEY}'
+#             response = requests.get(api_url)
 
-            if response.status_code == 200:
-                data = response.json()
-                rate = data['rate']
-                total_value += rate * amount_acquired
+#             if response.status_code == 200:
+#                 data = response.json()
+#                 rate = data['rate']
+#                 exchange_rates[coin] = rate
 
-        return jsonify({
-            'total_value': total_value,
-            'status': 'success'
-        }), 200
+#         total_value = 0
 
-    except Exception as ex:
-        return jsonify({
-            'status': 'error',
-            'message': str(ex)
-        }), 500
+#         # Calcular el valor total para cada criptomoneda
+#         for movimiento in movimientosCompra:
+#             coin_to, amount_acquired = movimiento
+#             # Obtener el tipo de cambio correspondiente
+#             rate = exchange_rates.get(coin_to, 0)
+#             total_value += rate * amount_acquired
+
+#         return jsonify({
+#             'total_value': total_value,
+#             'status': 'success'
+#         }), 200
+
+#     except Exception as ex:
+#         return jsonify({
+#             'status': 'error',
+#             'message': str(ex)
+#         }), 500
