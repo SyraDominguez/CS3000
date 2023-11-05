@@ -14,7 +14,7 @@ CURRENCIES = [
 
 # URL base de la API externa y clave de API.
 COINAPI_BASE_URL = 'https://rest.coinapi.io/v1'
-API_KEY = '65521F6D-9191-4781-B055-8F284BBC6C28'
+API_KEY = 'pon-aqui-tu-API-supersecreta'
 
 # Instancia de DBManager
 db = DBManager(app.config['RUTA'])
@@ -247,45 +247,46 @@ def get_crypto_list():
 
 # Ruta para obtener el valor total de las criptomonedas del usuario.
 
-# @app.route('/api/v1/crypto-total-value', methods=['GET'])
-# def get_crypto_total_value():
-#     try:
-#         # Obtener la lista de monedas que el usuario ha comprado.
-#         movimientosCompra = db.consultaSQL(
-#             'SELECT coin_to, amount_acquired FROM movements WHERE coin_from="EUR"')
 
-#         # Obtener una lista de las criptomonedas únicas en los movimientos
-#         unique_coins = list(set(coin for coin, _ in movimientosCompra))
+@app.route('/api/v1/crypto-total-value', methods=['GET'])
+def get_crypto_total_value():
+    try:
+        # Obtener la lista de monedas que el usuario ha comprado.
+        movimientosCompra = db.consultaSQL(
+            'SELECT coin_to, amount_acquired FROM movements WHERE coin_from="EUR"')
 
-#         # Crear un diccionario para almacenar los tipos de cambio
-#         exchange_rates = {}
+        # Obtener una lista de las criptomonedas únicas en los movimientos
+        unique_coins = list(set(coin for coin, _ in movimientosCompra))
 
-#         # Obtener los tipos de cambio de todas las criptomonedas en una sola llamada
-#         for coin in unique_coins:
-#             api_url = f'{COINAPI_BASE_URL}/exchangerate/{coin}/EUR?apikey={API_KEY}'
-#             response = requests.get(api_url)
+        # Crear un diccionario para almacenar los tipos de cambio
+        exchange_rates = {}
 
-#             if response.status_code == 200:
-#                 data = response.json()
-#                 rate = data['rate']
-#                 exchange_rates[coin] = rate
+        # Obtener los tipos de cambio de todas las criptomonedas en una sola llamada
+        for coin in unique_coins:
+            api_url = f'{COINAPI_BASE_URL}/exchangerate/{coin}/EUR?apikey={API_KEY}'
+            response = requests.get(api_url)
 
-#         total_value = 0
+            if response.status_code == 200:
+                data = response.json()
+                rate = data['rate']
+                exchange_rates[coin] = rate
 
-#         # Calcular el valor total para cada criptomoneda
-#         for movimiento in movimientosCompra:
-#             coin_to, amount_acquired = movimiento
-#             # Obtener el tipo de cambio correspondiente
-#             rate = exchange_rates.get(coin_to, 0)
-#             total_value += rate * amount_acquired
+        total_value = 0
 
-#         return jsonify({
-#             'total_value': total_value,
-#             'status': 'success'
-#         }), 200
+        # Calcular el valor total para cada criptomoneda
+        for movimiento in movimientosCompra:
+            coin_to, amount_acquired = movimiento
+            # Obtener el tipo de cambio correspondiente
+            rate = exchange_rates.get(coin_to, 0)
+            total_value += rate * amount_acquired
 
-#     except Exception as ex:
-#         return jsonify({
-#             'status': 'error',
-#             'message': str(ex)
-#         }), 500
+        return jsonify({
+            'total_value': total_value,
+            'status': 'success'
+        }), 200
+
+    except Exception as ex:
+        return jsonify({
+            'status': 'error',
+            'message': str(ex)
+        }), 500
