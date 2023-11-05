@@ -259,6 +259,22 @@ tr.error + tr td {
   color: var(--color3);
 }
 
+.list-table {
+  margin: 0 auto;
+  width: 40%;
+  align-items: center;
+}
+
+.crypto-summary th {
+  text-align: center;
+}
+
+#list-cryptos td {
+  display: inline-flex;
+  margin: 5px;
+  padding: 5px;
+}
+
 /* ESTILOS DEL CONTADOR Y DEL BALANCE */
 
 #user-balance p {

@@ -42,8 +42,15 @@ async function cargarListaCriptos() {
             data.results.forEach(cripto => {
                 let tr = document.createElement('tr');
 
-                // Formatear los datos antes de mostrarlos en la tabla
-                const formattedData = `${cripto.coin_to} ${cripto.amount_acquired}`;
+            // Formatear los datos antes de mostrarlos en la tabla
+            function formatData(coin, amount) {
+                return `
+                    <td>${coin}</td>
+                    <td>${amount}</td>
+                    `;
+            }
+            
+            const formattedData = formatData(cripto.coin_to, cripto.amount_acquired);
                 
                 tr.innerHTML = `<td>${formattedData}</td>`;
                 listaCriptosField.appendChild(tr);

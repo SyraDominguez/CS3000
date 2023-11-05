@@ -31,32 +31,31 @@
 
     <br>
         
-    <table class="paper grid grid1">
-        <thead>
-            <tr class="titulo-tabla">
-                <th>Cryptocurrency</th>
-                <th>Amount</th>
-            </tr>
-        </thead>
-
-        <tbody id="list-cryptos">
-            {% if operaciones %}
-                    <tr>
-                        <td>
-                            <input type="text" id="crypto-name" name="crypto-name" {{ operacion[0] }}>
-                        </td>  
-                        <td>
-                            <input type="number" id="crypto-quantity" name="crypto-quantity" {{ operacion[1] }}>
-                        </td>  
-                    </tr>
-            {% else %}
-                <tr>
-                    <td colspan="2">No cryptocurrency movements</td>
+    <div class="list-table">
+        <table class="paper grid grid1 crypto-summary">
+            <thead>
+                <tr class="titulo-tabla">
+                    <th>Cryptocurrencies List</th>
+                    <!-- <th>Amount</th> -->
                 </tr>
-            {% endif %}
-        </tbody>
-
-    </table>
+            </thead>
+            <tbody id="list-cryptos">
+                {% if operaciones %}
+                    {% for operacion in operaciones %}
+                        <tr>
+                            <td id="coin-{{ loop.index }}" class="coin">{{ operacion[0] }}</td>
+                            <td id="amount-{{ loop.index }}"class="amount">{{ operacion[1] }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="2">No cryptocurrency movements</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    
 </div>
 
 <div id="page-buttons">
