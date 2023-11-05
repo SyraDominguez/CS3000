@@ -204,11 +204,10 @@ def total_investment():
 @app.route('/api/v1/crypto-list', methods=['GET'])
 def get_crypto_list():
     try:
-        # Obtener la lista de monedas que el usuario ha comprado.
+        # Obtener los movimientos de compra de moneda del usuario
         movimientosCompra = db.consultaSQL(
-            'SELECT coin_to, amount_acquired FROM movements WHERE coin_from="EUR"')
+            'SELECT coin_to, SUM(amount_acquired) FROM movements WHERE coin_from="EUR" GROUP BY coin_to')
 
-        # Crear una lista de diccionarios con la información de cada criptomoneda.
         crypto_list = []
         for movimiento in movimientosCompra:
             coin_to, amount_acquired = movimiento
@@ -227,7 +226,6 @@ def get_crypto_list():
             'status': 'error',
             'message': str(ex)
         }), 500
-
 
 # Ruta para obtener el valor total de las criptomonedas del usuario.
 

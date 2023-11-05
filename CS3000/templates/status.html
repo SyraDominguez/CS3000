@@ -33,23 +33,24 @@
         
     <div class="list-table">
         <table class="paper grid grid1 crypto-summary">
-            <thead>
-                <tr class="titulo-tabla">
-                    <th>Cryptocurrencies List</th>
-                    <!-- <th>Amount</th> -->
-                </tr>
+            <thead class="titulo-tabla">
+                <th>Cryptocurrencies List</th>
             </thead>
             <tbody id="list-cryptos">
                 {% if operaciones %}
                     {% for operacion in operaciones %}
                         <tr>
-                            <td id="coin-{{ loop.index }}" class="coin">{{ operacion[0] }}</td>
-                            <td id="amount-{{ loop.index }}"class="amount">{{ operacion[1] }}</td>
+                            <td id="coin-{{ loop.index }}" class="coin">
+                                {{ operacion[0] }}
+                            </td>
+                            <td id="amount-{{ loop.index }}"class="amount">
+                                {{ operacion[1] }}
+                            </td>
                         </tr>
                     {% endfor %}
                 {% else %}
                     <tr>
-                        <td colspan="2">No cryptocurrency movements</td>
+                        <td colspan="2">No Cryptocurrencies movements</td>
                     </tr>
                 {% endif %}
             </tbody>

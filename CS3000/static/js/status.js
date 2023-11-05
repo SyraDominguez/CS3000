@@ -39,20 +39,15 @@ async function cargarListaCriptos() {
         if (data.status === 'success') {
             listaCriptosField.innerHTML = '';
 
-            data.results.forEach(cripto => {
-                let tr = document.createElement('tr');
+            // Obtener la lista de criptomonedas
+            const cryptoList = data.results;
 
-            // Formatear los datos antes de mostrarlos en la tabla
-            function formatData(coin, amount) {
-                return `
-                    <td>${coin}</td>
-                    <td>${amount}</td>
-                    `;
-            }
-            
-            const formattedData = formatData(cripto.coin_to, cripto.amount_acquired);
-                
-                tr.innerHTML = `<td>${formattedData}</td>`;
+            // Iterar sobre la lista de criptomonedas
+            cryptoList.forEach(cripto => {
+                // Crear una fila de la tabla para cada criptomoneda
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${cripto.coin_to}</td>
+                    <td>${cripto.amount_acquired}</td>`;
                 listaCriptosField.appendChild(tr);
             });
 
@@ -63,11 +58,11 @@ async function cargarListaCriptos() {
             }
         } else {
             console.error(data.message);
-            listaCriptosField.innerHTML = 'Error al cargar la lista de criptomonedas';
+            listaCriptosField.innerHTML = 'Error al cargar la lista de criptomonedas(1)';
         }
     } catch (error) {
         console.error(error);
-        listaCriptosField.innerHTML = 'Error al cargar la lista de criptomonedas';
+        listaCriptosField.innerHTML = 'Error al cargar la lista de criptomonedas(2)';
     }
 }
 
