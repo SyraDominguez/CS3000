@@ -42,9 +42,10 @@ async function cargarListaCriptos() {
             data.results.forEach(cripto => {
                 let tr = document.createElement('tr');
 
-                tr.appendChild(document.createTextNode(cripto.coin_to));
-                tr.appendChild(document.createTextNode(cripto.amount_acquired));
-
+                // Formatear los datos antes de mostrarlos en la tabla
+                const formattedData = `${cripto.coin_to} ${cripto.amount_acquired}`;
+                
+                tr.innerHTML = `<td>${formattedData}</td>`;
                 listaCriptosField.appendChild(tr);
             });
 
@@ -62,6 +63,7 @@ async function cargarListaCriptos() {
         listaCriptosField.innerHTML = 'Error al cargar la lista de criptomonedas';
     }
 }
+
 
 function cargarCryptoTotalValue() {
     const totalCryptoValueField = document.getElementById('valor-criptos');
