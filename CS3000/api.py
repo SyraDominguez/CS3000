@@ -81,7 +81,25 @@ def listar_movimientos():
     return jsonify(resultado), status_code
 
 
+@app.route('/api/v1/reset-movements', methods=['POST'])
+def reset_movements():
+    try:
+        # Llama a la función para borrar los movimientos
+        db.borrarMovimientos()
+        return jsonify({
+            'status': 'success',
+            'message': 'Movimientos eliminados correctamente'
+        }), 200
+    except Exception as ex:
+        return jsonify({
+            'status': 'error',
+            'message': str(ex)
+        }), 500
+
+
 # Ruta para realizar una operación de cambio de moneda.
+
+
 @app.route('/operations', methods=['GET', 'POST'])
 def operar():
 

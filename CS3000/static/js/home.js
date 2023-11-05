@@ -65,11 +65,38 @@ function mostrarMovimientos() {
         `;
     }
 }
+
+function resetearMovimientos() {
+    // Puedes mostrar un mensaje de confirmación antes de realizar el reset si lo deseas.
+    const confirmar = confirm('¿Seguro que quieres resetear los movimientos? Esto eliminará todos los registros.');
+
+    if (confirmar) {
+        // Envía una solicitud al servidor para restablecer los movimientos
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost:5000/api/v1/reset-movements', true);
+        xhr.send();
+
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                alert('Movimientos eliminados correctamente');
+                cargarMovimientos(); // Recarga los movimientos después de restablecerlos
+            } else {
+                alert('Error al eliminar movimientos');
+            }
+        };
+    }
+}
     
-    window.onload = function() {
+window.onload = function() {
     const boton = document.getElementById('boton-recarga');
     boton.addEventListener('click', () => {
         cargarMovimientos();
+    });
+
+    // Controlador de eventos para el botón "Reset"
+    const botonReset = document.getElementById('boton-reset');
+    botonReset.addEventListener('click', () => {
+        resetearMovimientos();
     });
 
     cargarMovimientos();

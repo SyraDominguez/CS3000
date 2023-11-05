@@ -42,3 +42,12 @@ class DBManager:
         self.conexion.commit()
 
         self.desconectar()
+
+    # Borrar Movimientos de la Base de Datos
+
+    def borrarMovimientos(self):
+        consulta = "DELETE FROM movements"
+        self.conectar()
+        self.cursor.execute(consulta)
+        self.conexion.commit()
+        self.desconectar()
