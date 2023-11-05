@@ -161,8 +161,8 @@ cython_debug/
 
 
 # SYRA
-config.py
-cs3000/data/*.db
+# config.py
+
 
 # DATOS DE ACCESO 
     User: CS3000
