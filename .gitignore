@@ -159,15 +159,10 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-
 # SYRA
 config.py
-
 
 
 # DATOS DE ACCESO 
     User: CS3000
     Password: CS3000
-
-
-.gitignore
