@@ -162,9 +162,12 @@ cython_debug/
 
 # SYRA
 config.py
-.gitignore
+
 
 
 # DATOS DE ACCESO 
     User: CS3000
     Password: CS3000
+
+
+.gitignore
