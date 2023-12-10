@@ -1,5 +1,5 @@
 import os
 
-API_KEY = 'E07256C9-4C6F-4E98-BBE7-739664232C20'
+API_KEY = 'Tu-Clave-Super-Secreta'
 
 RUTA = os.path.join('cs3000', 'data', 'movements.db')

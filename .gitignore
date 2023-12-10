@@ -161,7 +161,8 @@ cython_debug/
 
 
 # SYRA
-# config.py
+config.py
+.gitignore
 
 
 # DATOS DE ACCESO 
